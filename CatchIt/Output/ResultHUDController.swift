@@ -50,7 +50,16 @@ final class ResultHUDController: NSObject {
         stack.layer?.cornerRadius = 11
 
         let width: CGFloat = actions.isEmpty ? 240 : 300
-        let height: CGFloat = actions.isEmpty ? 46 : 76
+        // Measure wrapped text so translated messages do not collide with actions.
+        let textWidth = width - 28
+        label.preferredMaxLayoutWidth = textWidth
+        let textHeight = ceil((message as NSString).boundingRect(
+            with: NSSize(width: textWidth, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: [.font: label.font ?? NSFont.systemFont(ofSize: 13)]
+        ).height)
+        let lineHeight = ceil((label.font ?? NSFont.systemFont(ofSize: 13)).boundingRectForFont.height)
+        let height = max(22, min(textHeight, lineHeight * 3)) + 24 + (actions.isEmpty ? 0 : 31)
         let hud = NSPanel(contentRect: CGRect(x: 0, y: 0, width: width, height: height), styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         hud.isOpaque = false
         hud.backgroundColor = .clear
@@ -71,7 +80,7 @@ final class ResultHUDController: NSObject {
         panel = hud
 
         dismissTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(actions.isEmpty ? 2.0 : 5.0))
+            try? await Task.sleep(for: .seconds(actions.isEmpty ? 3.0 : 8.0))
             guard !Task.isCancelled else { return }
             self?.dismiss()
         }

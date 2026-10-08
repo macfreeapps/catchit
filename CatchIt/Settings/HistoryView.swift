@@ -44,9 +44,12 @@ struct HistoryView: View {
                 .accessibilityHint("Copies this capture to the clipboard")
             }
             .searchable(text: $searchText, prompt: "Search history")
-            if history.entries.isEmpty {
-                ContentUnavailableView("No Saved Captures", systemImage: "text.magnifyingglass", description: Text("Turn on Save capture history in General settings to keep a local list."))
-                    .padding()
+            .overlay {
+                if history.entries.isEmpty {
+                    ContentUnavailableView("No Saved Captures", systemImage: "text.magnifyingglass", description: Text("Turn on Save capture history in General settings to keep a local list."))
+                } else if entries.isEmpty {
+                    ContentUnavailableView.search(text: searchText)
+                }
             }
         }
     }

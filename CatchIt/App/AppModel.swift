@@ -207,7 +207,10 @@ final class AppModel: ObservableObject {
         let root = HistoryView(model: self)
         let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 520, height: 560), styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.title = AppText.localized("Catch It History")
-        window.contentView = NSHostingView(rootView: root)
+        let hostingView = NSHostingView(rootView: root)
+        hostingView.sizingOptions = []
+        window.contentView = hostingView
+        window.contentMinSize = NSSize(width: 420, height: 360)
         window.center()
         window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil)
@@ -218,9 +221,11 @@ final class AppModel: ObservableObject {
     func presentOnboardingIfNeeded() {
         guard !preferences.general.onboardingComplete else { return }
         showOnboarding = true
-        let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 520, height: 400), styleMask: [.titled, .closable], backing: .buffered, defer: false)
+        let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 520, height: 440), styleMask: [.titled, .closable], backing: .buffered, defer: false)
         window.title = AppText.localized("Welcome to Catch It")
-        window.contentView = NSHostingView(rootView: OnboardingView(model: self))
+        let hostingView = NSHostingView(rootView: OnboardingView(model: self))
+        hostingView.sizingOptions = []
+        window.contentView = hostingView
         window.center()
         window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil)
@@ -242,6 +247,7 @@ final class AppModel: ObservableObject {
 
     func copyHistory(_ entry: HistoryEntry) {
         collection.copyDirectly(entry.text)
+        showMessage(AppText.localized("Copied to clipboard"), near: NSEvent.mouseLocation)
     }
 
     private func process(_ selection: CaptureSelection, mode: CaptureMode) {

@@ -1300,6 +1300,125 @@
           }
         }
       }
+    },
+    "Show capture results": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show capture results"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiển thị kết quả chụp"
+          }
+        }
+      }
+    },
+    "macOS asks for Screen Recording access when you first capture. Catch It reads the area you select and recognizes its text on this Mac.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS asks for Screen Recording access when you first capture. Catch It reads the area you select and recognizes its text on this Mac."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS yêu cầu quyền Ghi màn hình khi bạn chụp lần đầu. Catch It đọc vùng bạn chọn và nhận dạng văn bản ngay trên máy Mac này."
+          }
+        }
+      }
+    },
+    "Select a shortcut, then press a modifier and a key. Press Escape to cancel. Control–Option combinations are the defaults.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a shortcut, then press a modifier and a key. Press Escape to cancel. Control–Option combinations are the defaults."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chọn một phím tắt, rồi nhấn phím bổ trợ và một phím khác. Nhấn Escape để hủy. Các tổ hợp Control–Option là mặc định."
+          }
+        }
+      }
+    },
+    "Remove custom word %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove custom word %lld"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa từ tùy chỉnh %lld"
+          }
+        }
+      }
+    },
+    "Remove word": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove word"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa từ"
+          }
+        }
+      }
+    },
+    "%@: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: %@"
+          }
+        }
+      }
+    },
+    "Press to record a shortcut, then type a modifier and key. Escape cancels.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Press to record a shortcut, then type a modifier and key. Escape cancels."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhấn để ghi phím tắt, rồi nhập phím bổ trợ và một phím khác. Escape để hủy."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

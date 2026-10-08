@@ -20,7 +20,7 @@ struct TextRecognizer {
             request.customWords = preferences.customWords
             if !preferences.automaticallyDetectsLanguage {
                 let supported = (try? request.supportedRecognitionLanguages()) ?? []
-                let primary = supported.contains(preferences.primaryLanguage) ? preferences.primaryLanguage : supported.first ?? "en-US"
+                let primary = Self.preferredSupportedLanguage(preferences.primaryLanguage, supported: supported)
                 request.recognitionLanguages = [primary]
             }
             if #available(macOS 13.0, *) {
@@ -41,6 +41,13 @@ struct TextRecognizer {
         let request = VNRecognizeTextRequest()
         request.recognitionLevel = .accurate
         return (try? request.supportedRecognitionLanguages()) ?? [Locale.preferredLanguages.first ?? "en-US"]
+    }
+
+    static func preferredSupportedLanguage(_ preferred: String, supported: [String]) -> String {
+        if supported.contains(preferred) { return preferred }
+        let language = preferred.split(separator: "-").first?.lowercased()
+        return supported.first(where: { $0.split(separator: "-").first?.lowercased() == language })
+            ?? (supported.contains("en-US") ? "en-US" : supported.first ?? "en-US")
     }
 
     private static func upscaledIfSmall(_ image: CGImage) -> CGImage {

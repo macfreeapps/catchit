@@ -3,6 +3,9 @@ import SwiftUI
 struct CatchItMenuBarMark: View {
     var body: some View {
         Canvas { context, size in
+            let scale = min(size.width, size.height) / 18
+            context.translateBy(x: (size.width - 18 * scale) / 2, y: (size.height - 18 * scale) / 2)
+            context.scaleBy(x: scale, y: scale)
             let page = Path(roundedRect: CGRect(x: 2.5, y: 3, width: 9, height: 12), cornerRadius: 1.5)
             context.stroke(page, with: .foreground, style: StrokeStyle(lineWidth: 1.35, lineCap: .round, lineJoin: .round))
 
@@ -22,7 +25,6 @@ struct CatchItMenuBarMark: View {
             handle.addLine(to: CGPoint(x: 16, y: 4.6))
             context.stroke(handle, with: .foreground, style: StrokeStyle(lineWidth: 1.7, lineCap: .round))
         }
-        .frame(width: 18, height: 18)
         .accessibilityLabel("Catch It")
     }
 }

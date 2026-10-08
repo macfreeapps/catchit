@@ -108,7 +108,10 @@ final class RecognitionPreferences: ObservableObject {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        primaryLanguage = defaults.string(forKey: "recognition.primaryLanguage") ?? Locale.preferredLanguages.first ?? "en-US"
+        primaryLanguage = TextRecognizer.preferredSupportedLanguage(
+            defaults.string(forKey: "recognition.primaryLanguage") ?? Locale.preferredLanguages.first ?? "en-US",
+            supported: TextRecognizer.supportedLanguages()
+        )
         automaticallyDetectsLanguage = defaults.object(forKey: "recognition.automaticallyDetectsLanguage") as? Bool ?? true
         codeSymbolsMode = defaults.object(forKey: "recognition.codeSymbolsMode") as? Bool ?? false
         customWords = defaults.stringArray(forKey: "recognition.customWords") ?? []
