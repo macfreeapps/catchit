@@ -1,0 +1,51 @@
+name: CatchIt
+options:
+  bundleIdPrefix: com.tarudesu
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    PRODUCT_BUNDLE_IDENTIFIER: com.tarudesu.CatchIt
+    PRODUCT_NAME: CatchIt
+    GENERATE_INFOPLIST_FILE: NO
+    INFOPLIST_FILE: CatchIt/Info.plist
+    ENABLE_APP_SANDBOX: NO
+    CODE_SIGN_STYLE: Automatic
+targets:
+  CatchIt:
+    type: application
+    platform: macOS
+    sources:
+      - path: CatchIt/App
+      - path: CatchIt/MenuBar
+      - path: CatchIt/Capture
+      - path: CatchIt/Recognition
+      - path: CatchIt/Output
+      - path: CatchIt/Permissions
+      - path: CatchIt/Settings
+      - path: CatchIt/Hotkeys
+      - path: CatchIt/Resources/CatchIt.icns
+        buildPhase: resources
+      - path: CatchIt/Resources/Localizable.xcstrings
+        buildPhase: resources
+      - path: CatchIt/Resources/InfoPlist.xcstrings
+        buildPhase: resources
+    settings:
+      base:
+        SWIFT_EMIT_LOC_STRINGS: YES
+  CatchItTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: CatchItTests
+    dependencies:
+      - target: CatchIt
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tarudesu.CatchItTests
+        PRODUCT_NAME: CatchItTests
+        PRODUCT_MODULE_NAME: CatchItTests
+        GENERATE_INFOPLIST_FILE: YES

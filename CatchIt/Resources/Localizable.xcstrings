@@ -1,0 +1,1306 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "General": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chung"
+          }
+        }
+      }
+    },
+    "Recognition": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhận diện"
+          }
+        }
+      }
+    },
+    "Custom Words": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ tùy chỉnh"
+          }
+        }
+      }
+    },
+    "Shortcuts": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phím tắt"
+          }
+        }
+      }
+    },
+    "Speech": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giọng nói"
+          }
+        }
+      }
+    },
+    "About": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giới thiệu"
+          }
+        }
+      }
+    },
+    "Capture": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp"
+          }
+        }
+      }
+    },
+    "Show the result HUD": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hiển thị thông báo kết quả"
+          }
+        }
+      }
+    },
+    "Play a sound after a successful capture": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phát âm thanh sau khi chụp thành công"
+          }
+        }
+      }
+    },
+    "Keep line breaks": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giữ ngắt dòng"
+          }
+        }
+      }
+    },
+    "When off, lines are joined into paragraphs and line-end hyphenation is corrected.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khi tắt, các dòng được nối thành đoạn và dấu gạch nối cuối dòng được xử lý."
+          }
+        }
+      }
+    },
+    "Open detected links automatically": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự động mở liên kết được phát hiện"
+          }
+        }
+      }
+    },
+    "Clipboard collection": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bộ sưu tập bộ nhớ tạm"
+          }
+        }
+      }
+    },
+    "Add new captures to a collection": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thêm nội dung mới vào bộ sưu tập"
+          }
+        }
+      }
+    },
+    "Separator": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dấu phân cách"
+          }
+        }
+      }
+    },
+    "New line": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dòng mới"
+          }
+        }
+      }
+    },
+    "Blank line": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dòng trống"
+          }
+        }
+      }
+    },
+    "Space": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Khoảng trắng"
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quyền riêng tư"
+          }
+        }
+      }
+    },
+    "Save capture history": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lưu lịch sử nội dung đã chụp"
+          }
+        }
+      }
+    },
+    "Clear collection after I paste": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa bộ sưu tập sau khi dán"
+          }
+        }
+      }
+    },
+    "Auto-clear watches for Command–V and requires Accessibility access. Catch It asks for this permission only when you turn this option on.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự động xóa sẽ theo dõi tổ hợp Command–V và cần quyền Trợ năng. Catch It chỉ yêu cầu quyền này khi bạn bật tùy chọn."
+          }
+        }
+      }
+    },
+    "Open History…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở lịch sử…"
+          }
+        }
+      }
+    },
+    "Clear History": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa lịch sử"
+          }
+        }
+      }
+    },
+    "System": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hệ thống"
+          }
+        }
+      }
+    },
+    "Launch Catch It at login": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Catch It khi đăng nhập"
+          }
+        }
+      }
+    },
+    "Appearance": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giao diện"
+          }
+        }
+      }
+    },
+    "Light": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sáng"
+          }
+        }
+      }
+    },
+    "Dark": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tối"
+          }
+        }
+      }
+    },
+    "Language": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngôn ngữ"
+          }
+        }
+      }
+    },
+    "Primary language (auto-detect off)": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngôn ngữ chính (khi tắt tự động nhận diện)"
+          }
+        }
+      }
+    },
+    "Automatically detect language": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tự động nhận diện ngôn ngữ"
+          }
+        }
+      }
+    },
+    "Vertical Chinese, Japanese, and Korean text is recognized when the matching primary language is selected.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Có thể nhận diện văn bản dọc tiếng Trung, Nhật và Hàn khi chọn ngôn ngữ chính tương ứng."
+          }
+        }
+      }
+    },
+    "Recognition behavior": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cách nhận diện"
+          }
+        }
+      }
+    },
+    "Code / symbols mode": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ mã / ký hiệu"
+          }
+        }
+      }
+    },
+    "Turns off language correction to help preserve source code, URLs, and identifiers.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tắt tự sửa ngôn ngữ để giữ nguyên mã nguồn, URL và mã định danh."
+          }
+        }
+      }
+    },
+    "Add names and specialist terms that Apple Vision should prefer during recognition.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thêm tên riêng và thuật ngữ chuyên ngành để Apple Vision ưu tiên khi nhận diện."
+          }
+        }
+      }
+    },
+    "Custom word": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ tùy chỉnh"
+          }
+        }
+      }
+    },
+    "Add Word": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thêm từ"
+          }
+        }
+      }
+    },
+    "Adds a new custom recognition word": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thêm một từ nhận diện tùy chỉnh"
+          }
+        }
+      }
+    },
+    "%lld words": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld từ"
+          }
+        }
+      }
+    },
+    "Custom word %lld": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Từ tùy chỉnh %lld"
+          }
+        }
+      }
+    },
+    "Enable global shortcuts": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật phím tắt toàn cục"
+          }
+        }
+      }
+    },
+    "Control–Option combinations are defaults. Choose a modifier plus a key. Shortcuts are provided by Carbon RegisterEventHotKey with no added package.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mặc định dùng tổ hợp Control–Option. Hãy chọn một phím bổ trợ cùng một phím khác. Phím tắt dùng Carbon RegisterEventHotKey, không cần gói bổ sung."
+          }
+        }
+      }
+    },
+    "Each action needs its own shortcut. Resolve duplicates before using the conflicting actions.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mỗi thao tác cần một phím tắt riêng. Hãy xử lý các phím tắt trùng trước khi dùng những thao tác bị ảnh hưởng."
+          }
+        }
+      }
+    },
+    "Read text after capture": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đọc văn bản sau khi chụp"
+          }
+        }
+      }
+    },
+    "Voice": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giọng đọc"
+          }
+        }
+      }
+    },
+    "System default": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mặc định hệ thống"
+          }
+        }
+      }
+    },
+    "Speech voice": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giọng đọc văn bản"
+          }
+        }
+      }
+    },
+    "Speech rate": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tốc độ đọc"
+          }
+        }
+      }
+    },
+    "Slower": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chậm hơn"
+          }
+        }
+      }
+    },
+    "Faster": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhanh hơn"
+          }
+        }
+      }
+    },
+    "Stop Speaking": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dừng đọc"
+          }
+        }
+      }
+    },
+    "Select a part of your screen and copy its text or barcode contents. Recognition runs locally on this Mac with Apple Vision.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chọn một vùng trên màn hình để sao chép văn bản hoặc nội dung mã vạch. Apple Vision nhận diện trực tiếp trên máy Mac này."
+          }
+        }
+      }
+    },
+    "No network access, analytics, or telemetry. Screen images are processed in memory and discarded.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không truy cập mạng, phân tích hay thu thập dữ liệu sử dụng. Ảnh màn hình chỉ được xử lý trong bộ nhớ rồi xóa."
+          }
+        }
+      }
+    },
+    "Runtime frameworks: SwiftUI, AppKit, Carbon, ScreenCaptureKit, Vision, PDFKit, AVFoundation, ServiceManagement.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Các framework: SwiftUI, AppKit, Carbon, ScreenCaptureKit, Vision, PDFKit, AVFoundation và ServiceManagement."
+          }
+        }
+      }
+    },
+    "Third-party runtime packages: none. XcodeGen (MIT) is optional and used only to regenerate the Xcode project.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không dùng gói bên thứ ba khi chạy ứng dụng. Có thể dùng XcodeGen (MIT) để tạo lại dự án Xcode."
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phiên bản %@"
+          }
+        }
+      }
+    },
+    "Welcome to Catch It": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chào mừng bạn đến với Catch It"
+          }
+        }
+      }
+    },
+    "Give Catch It permission to read selected screen areas.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cho phép Catch It đọc vùng màn hình bạn chọn."
+          }
+        }
+      }
+    },
+    "Your captures stay on this Mac.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nội dung bạn chụp chỉ lưu trên máy Mac này."
+          }
+        }
+      }
+    },
+    "Screen Recording": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ghi màn hình"
+          }
+        }
+      }
+    },
+    "macOS asks for Screen Recording access the first time you capture. Catch It uses ScreenCaptureKit to read only the area you select, then sends the image to Apple Vision on this Mac.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS sẽ yêu cầu quyền Ghi màn hình khi bạn chụp lần đầu. Catch It dùng ScreenCaptureKit để đọc vùng bạn chọn, sau đó chuyển ảnh cho Apple Vision trên máy Mac này."
+          }
+        }
+      }
+    },
+    "If macOS does not show the permission prompt, use the button below to open Privacy & Security settings. Quit and reopen Catch It after changing access.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nếu macOS không hiện yêu cầu quyền, hãy dùng nút bên dưới để mở cài đặt Quyền riêng tư & Bảo mật. Thoát rồi mở lại Catch It sau khi đổi quyền."
+          }
+        }
+      }
+    },
+    "Open Screen Recording Settings…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở cài đặt Ghi màn hình…"
+          }
+        }
+      }
+    },
+    "Opens macOS Privacy & Security settings": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở cài đặt Quyền riêng tư & Bảo mật của macOS"
+          }
+        }
+      }
+    },
+    "Local by design": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thiết kế ưu tiên xử lý cục bộ"
+          }
+        }
+      }
+    },
+    "Recognized text is copied to your clipboard. Captured images are processed in memory and discarded. Catch It makes no network requests and collects no analytics.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Văn bản nhận diện được sao chép vào bộ nhớ tạm. Ảnh chụp chỉ được xử lý trong bộ nhớ rồi xóa. Catch It không kết nối mạng hoặc thu thập dữ liệu phân tích."
+          }
+        }
+      }
+    },
+    "Start a capture from the menu bar or use Control–Option–Space. Press Escape to cancel a selection.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu chụp từ thanh menu hoặc nhấn Control–Option–Space. Nhấn Escape để hủy chọn vùng."
+          }
+        }
+      }
+    },
+    "Page %lld of 2": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trang %lld / 2"
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quay lại"
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiếp tục"
+          }
+        }
+      }
+    },
+    "Get Started": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu"
+          }
+        }
+      }
+    },
+    "Recent Captures": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nội dung gần đây"
+          }
+        }
+      }
+    },
+    "Copy capture: %@": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sao chép nội dung: %@"
+          }
+        }
+      }
+    },
+    "Copies this capture to the clipboard": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sao chép nội dung này vào bộ nhớ tạm"
+          }
+        }
+      }
+    },
+    "Search history": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tìm trong lịch sử"
+          }
+        }
+      }
+    },
+    "No Saved Captures": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chưa có nội dung đã lưu"
+          }
+        }
+      }
+    },
+    "Turn on Save capture history in General settings to keep a local list.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật “Lưu lịch sử nội dung đã chụp” trong phần Chung để lưu danh sách trên máy này."
+          }
+        }
+      }
+    },
+    "Catch It — select screen text": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Catch It — chọn văn bản trên màn hình"
+          }
+        }
+      }
+    },
+    "Catch Text": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp văn bản"
+          }
+        }
+      }
+    },
+    "Catch Barcode": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp mã vạch"
+          }
+        }
+      }
+    },
+    "Catch Same Area": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp lại vùng cũ"
+          }
+        }
+      }
+    },
+    "Import from iPhone or iPad": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhập từ iPhone hoặc iPad"
+          }
+        }
+      }
+    },
+    "Open Image or PDF…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở ảnh hoặc PDF…"
+          }
+        }
+      }
+    },
+    "Additive Mode": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chế độ bổ sung"
+          }
+        }
+      }
+    },
+    "Undo Clear Collection": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoàn tác xóa bộ sưu tập"
+          }
+        }
+      }
+    },
+    "Clear Collection": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa bộ sưu tập"
+          }
+        }
+      }
+    },
+    "Read Aloud After Capture": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đọc sau khi chụp"
+          }
+        }
+      }
+    },
+    "Capture and Speak": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp và đọc"
+          }
+        }
+      }
+    },
+    "History…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lịch sử…"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cài đặt…"
+          }
+        }
+      }
+    },
+    "Quit Catch It": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thoát Catch It"
+          }
+        }
+      }
+    },
+    "Toggle Additive Mode": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật / tắt chế độ bổ sung"
+          }
+        }
+      }
+    },
+    "Allow Accessibility Access": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cho phép quyền Trợ năng"
+          }
+        }
+      }
+    },
+    "Automatic clearing watches for Command–V so the collection can be cleared after it is pasted. Catch It needs Accessibility access only for this optional feature.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tính năng tự động xóa theo dõi Command–V để xóa bộ sưu tập sau khi dán. Catch It chỉ cần quyền Trợ năng cho tính năng tùy chọn này."
+          }
+        }
+      }
+    },
+    "Recognize Text": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhận diện văn bản"
+          }
+        }
+      }
+    },
+    "Catch It History": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lịch sử Catch It"
+          }
+        }
+      }
+    },
+    "Select an area first": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy chọn một vùng trước"
+          }
+        }
+      }
+    },
+    "No text found": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không tìm thấy văn bản"
+          }
+        }
+      }
+    },
+    "No barcode found": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Không tìm thấy mã vạch"
+          }
+        }
+      }
+    },
+    "Read text instead": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhận diện văn bản thay thế"
+          }
+        }
+      }
+    },
+    "Allow Screen Recording for Catch It": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cho phép Catch It ghi màn hình"
+          }
+        }
+      }
+    },
+    "macOS needs Screen Recording permission so Catch It can read the area you select. After enabling it, quit and reopen Catch It.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Catch It cần quyền Ghi màn hình của macOS để đọc vùng bạn chọn. Sau khi bật quyền, hãy thoát rồi mở lại Catch It."
+          }
+        }
+      }
+    },
+    "Capture failed": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chụp không thành công"
+          }
+        }
+      }
+    },
+    "Recognition failed": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhận diện không thành công"
+          }
+        }
+      }
+    },
+    "Open link": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở liên kết"
+          }
+        }
+      }
+    },
+    "Open System Settings": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mở Cài đặt hệ thống"
+          }
+        }
+      }
+    },
+    "Later": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Để sau"
+          }
+        }
+      }
+    },
+    "Caught one word": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã nhận diện một từ"
+          }
+        }
+      }
+    },
+    "%lld words caught": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã nhận diện %lld từ"
+          }
+        }
+      }
+    },
+    "Choose an image or PDF file.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy chọn một tệp ảnh hoặc PDF."
+          }
+        }
+      }
+    },
+    "Catch It could not read this file.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Catch It không thể đọc tệp này."
+          }
+        }
+      }
+    },
+    "Screen Recording permission is required.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cần có quyền Ghi màn hình."
+          }
+        }
+      }
+    },
+    "The selected display is no longer available.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Màn hình đã chọn không còn khả dụng."
+          }
+        }
+      }
+    },
+    "The selected area is too small to capture.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vùng đã chọn quá nhỏ để chụp."
+          }
+        }
+      }
+    },
+    "Screen selection": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vùng chọn màn hình"
+          }
+        }
+      }
+    },
+    "Drag to choose an area. Press Escape to cancel. Press L to toggle line breaks, A to toggle additive mode, and S to toggle speaking.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kéo để chọn vùng. Nhấn Escape để hủy. Nhấn L để bật / tắt ngắt dòng, A để bật / tắt chế độ bổ sung và S để bật / tắt đọc."
+          }
+        }
+      }
+    },
+    "Drag to select · L Lines · A Add · S Speak · Esc Cancel": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kéo để chọn · L Ngắt dòng · A Bổ sung · S Đọc · Esc Hủy"
+          }
+        }
+      }
+    },
+    "Line breaks": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngắt dòng"
+          }
+        }
+      }
+    },
+    "Additive": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bổ sung"
+          }
+        }
+      }
+    },
+    "Speak": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đọc"
+          }
+        }
+      }
+    },
+    "On": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bật"
+          }
+        }
+      }
+    },
+    "Off": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tắt"
+          }
+        }
+      }
+    },
+    "Global shortcut: %@": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phím tắt toàn cục: %@"
+          }
+        }
+      }
+    },
+    "Type a shortcut…": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhấn tổ hợp phím tắt…"
+          }
+        }
+      }
+    },
+    "Click, then press a modifier and key to record a shortcut.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bấm vào đây, sau đó nhấn một phím bổ trợ và một phím khác để ghi phím tắt."
+          }
+        }
+      }
+    },
+    "Interface language follows macOS; English and Vietnamese are available.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngôn ngữ giao diện theo cài đặt macOS; hiện có tiếng Anh và tiếng Việt."
+          }
+        }
+      }
+    },
+    "Space key": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phím cách"
+          }
+        }
+      }
+    },
+    "Key %lld": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phím %lld"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

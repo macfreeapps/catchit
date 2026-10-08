@@ -1,0 +1,16 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSScreenCaptureUsageDescription": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Catch It đọc vùng bạn chọn để Apple Vision nhận diện văn bản trực tiếp trên máy Mac này."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
