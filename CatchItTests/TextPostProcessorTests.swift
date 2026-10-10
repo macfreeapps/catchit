@@ -59,6 +59,55 @@ final class CollectionTextTests: XCTestCase {
 
 @MainActor
 final class CaptureOverlayCoordinatorTests: XCTestCase {
+    func testCaptureOverlayReceivesClicksBeforeAnySelectionIsDrawn() async throws {
+        let coordinator = CaptureOverlayCoordinator()
+        await coordinator.beginCaptureAfterCurrentEvent(toggles: CaptureToggles(
+            keepLineBreaks: true, additiveMode: false, speakAfterCapture: false
+        ))
+        defer { coordinator.cancelCapture() }
+
+        let panel = try XCTUnwrap(NSApp.windows.first { $0.isVisible && $0.level == .screenSaver })
+        panel.displayIfNeeded()
+        let point = CGPoint(x: panel.frame.midX, y: panel.frame.midY)
+        // Ordering and backing-store updates reach WindowServer asynchronously.
+        let deadline = ContinuousClock.now.advanced(by: .seconds(1))
+        var hitWindow = NSWindow.windowNumber(at: point, belowWindowWithWindowNumber: 0)
+        while hitWindow != panel.windowNumber, ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(10))
+            hitWindow = NSWindow.windowNumber(at: point, belowWindowWithWindowNumber: 0)
+        }
+        XCTAssertEqual(
+            hitWindow,
+            panel.windowNumber,
+            "The initial capture surface must receive clicks rather than pass them to the app underneath."
+        )
+    }
+
+    func testDraggingSelectionDeliversTheChosenAreaAndDismissesOverlay() async throws {
+        let coordinator = CaptureOverlayCoordinator()
+        var selection: CaptureSelection?
+        coordinator.onSelection = { selection = $0 }
+        await coordinator.beginCaptureAfterCurrentEvent(toggles: CaptureToggles(
+            keepLineBreaks: true, additiveMode: false, speakAfterCapture: false
+        ))
+        defer { coordinator.cancelCapture() }
+        let panel = try XCTUnwrap(NSApp.windows.first { $0.isVisible && $0.level == .screenSaver })
+        let rect = CGRect(x: 40, y: 80, width: 220, height: 90)
+        let expected = panel.convertToScreen(rect)
+        for (type, point) in [(NSEvent.EventType.leftMouseDown, rect.origin),
+                              (.leftMouseDragged, CGPoint(x: rect.maxX, y: rect.maxY)),
+                              (.leftMouseUp, CGPoint(x: rect.maxX, y: rect.maxY))] {
+            let event = try XCTUnwrap(NSEvent.mouseEvent(
+                with: type, location: point, modifierFlags: [], timestamp: 0,
+                windowNumber: panel.windowNumber, context: nil,
+                eventNumber: 0, clickCount: 1, pressure: 1
+            ))
+            panel.sendEvent(event)
+        }
+        XCTAssertEqual(try XCTUnwrap(selection).globalRect, expected)
+        XCTAssertFalse(coordinator.isCapturing)
+    }
+
     func testCaptureOverlayCanBeOpenedAndDismissedAfterMenuActionReturns() async {
         let coordinator = CaptureOverlayCoordinator()
         await coordinator.beginCaptureAfterCurrentEvent(toggles: CaptureToggles(

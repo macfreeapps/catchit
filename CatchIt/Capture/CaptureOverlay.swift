@@ -116,7 +116,11 @@ private final class CapturePanel: NSPanel {
         )
         setFrame(screen.frame, display: false)
         isOpaque = false
-        backgroundColor = .clear
+        // WindowServer passes clicks through fully transparent pixels. Keep a
+        // barely visible input surface so selection works before anything is drawn.
+        backgroundColor = NSColor.black.withAlphaComponent(0.01)
+        ignoresMouseEvents = false
+        acceptsMouseMovedEvents = true
         hasShadow = false
         level = .screenSaver
         collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary, .ignoresCycle]
@@ -150,12 +154,20 @@ private final class CaptureOverlayView: NSView {
 
     override var acceptsFirstResponder: Bool { true }
 
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+
+    override func mouseMoved(with event: NSEvent) {
+        NSCursor.crosshair.set()
+    }
+
     override func resetCursorRects() {
         addCursorRect(bounds, cursor: .crosshair)
     }
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        NSColor.black.withAlphaComponent(0.01).setFill()
+        bounds.fill(using: .copy)
         guard let selectionRect else { return }
         NSColor(calibratedWhite: 0.5, alpha: 0.34).setFill()
         selectionRect.fill()
