@@ -15,6 +15,6 @@ Reviewed on macOS 27 with the installed universal app, using screenshots and the
 
 ## Scope and remaining manual checks
 
-All six Settings tabs were inspected in English dark appearance; Vietnamese onboarding and Settings were inspected visually. The selection overlay creation and dismissal regression check passed, along with all eight existing unit tests (nine total). A universal Release archive built successfully and its code signature was verified. This pass did not grant Screen Recording or Accessibility access, record private screen content, run a full VoiceOver session, or repeat multi-monitor/OCR coverage. The remaining capture, light appearance, history data, and assistive-technology scenarios are listed in TESTING.md.
+All six Settings tabs were inspected in English dark appearance; Vietnamese onboarding and Settings were inspected visually. The selection overlay creation and dismissal regression check passed, along with the OCR, QR barcode, image/PDF import, smart-link detection, shortcut mapping, collection, and text post-processing checks (14 passing tests total). A universal Release archive built successfully and its code signature was verified. This pass did not grant Screen Recording or Accessibility access, record private screen content, run a full VoiceOver session, or repeat multi-monitor/OCR coverage. The remaining capture, light appearance, history data, and assistive-technology scenarios are listed in TESTING.md.
 
 Distribution remains Apple Development signed and not notarized; this UI update does not change that limitation.

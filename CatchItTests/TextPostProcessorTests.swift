@@ -72,3 +72,98 @@ final class CaptureOverlayCoordinatorTests: XCTestCase {
         XCTAssertFalse(coordinator.isCapturing)
     }
 }
+
+import AppKit
+import CoreImage
+import CoreImage.CIFilterBuiltins
+import ImageIO
+import PDFKit
+import UniformTypeIdentifiers
+
+final class RecognitionFeatureTests: XCTestCase {
+    func testRecognizesGeneratedTextImage() async throws {
+        let image = try makeTextImage("CATCH IT 123")
+        let result = try await TextRecognizer().recognize(in: image, preferences: OCRPreferences(
+            primaryLanguage: "en-US",
+            automaticallyDetectsLanguage: true,
+            codeSymbolsMode: false,
+            customWords: [],
+            keepLineBreaks: true
+        ))
+        XCTAssertTrue(result.localizedCaseInsensitiveContains("CATCH"), "Recognized: \(result)")
+        XCTAssertTrue(result.contains("123"), "Recognized: \(result)")
+    }
+
+    func testRecognizesGeneratedQRCode() async throws {
+        let filter = CIFilter.qrCodeGenerator()
+        filter.message = Data("catchit-test-payload".utf8)
+        filter.correctionLevel = "M"
+        let output = try XCTUnwrap(filter.outputImage).transformed(by: CGAffineTransform(scaleX: 8, y: 8))
+        let image = try XCTUnwrap(CIContext().createCGImage(output, from: output.extent))
+        let values = try await BarcodeRecognizer().recognize(in: image)
+        XCTAssertEqual(values, ["catchit-test-payload"])
+    }
+
+    func testImportsImageAndMultiPagePDF() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+
+        let image = try makeTextImage("PAGE ONE")
+        let imageURL = directory.appendingPathComponent("fixture.png")
+        let destination = try XCTUnwrap(CGImageDestinationCreateWithURL(imageURL as CFURL, UTType.png.identifier as CFString, 1, nil))
+        CGImageDestinationAddImage(destination, image, nil)
+        XCTAssertTrue(CGImageDestinationFinalize(destination))
+        XCTAssertEqual(try FileRecognitionService().images(from: imageURL).count, 1)
+
+        let pdfURL = directory.appendingPathComponent("fixture.pdf")
+        let document = PDFDocument()
+        for _ in 0..<2 {
+            let pageImage = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
+            document.insert(try XCTUnwrap(PDFPage(image: pageImage)), at: document.pageCount)
+        }
+        XCTAssertTrue(document.write(to: pdfURL))
+        XCTAssertEqual(try FileRecognitionService().images(from: pdfURL).count, 2)
+    }
+
+    private func makeTextImage(_ value: String) throws -> CGImage {
+        let bitmap = try XCTUnwrap(NSBitmapImageRep(
+            bitmapDataPlanes: nil,
+            pixelsWide: 900,
+            pixelsHigh: 220,
+            bitsPerSample: 8,
+            samplesPerPixel: 4,
+            hasAlpha: true,
+            isPlanar: false,
+            colorSpaceName: .deviceRGB,
+            bytesPerRow: 0,
+            bitsPerPixel: 0
+        ))
+        let graphics = try XCTUnwrap(NSGraphicsContext(bitmapImageRep: bitmap))
+        NSGraphicsContext.saveGraphicsState()
+        NSGraphicsContext.current = graphics
+        NSColor.white.setFill()
+        NSBezierPath(rect: NSRect(x: 0, y: 0, width: 900, height: 220)).fill()
+        (value as NSString).draw(at: NSPoint(x: 36, y: 70), withAttributes: [
+            .font: NSFont.boldSystemFont(ofSize: 72),
+            .foregroundColor: NSColor.black
+        ])
+        graphics.flushGraphics()
+        NSGraphicsContext.restoreGraphicsState()
+        return try XCTUnwrap(bitmap.cgImage)
+    }
+}
+
+final class SmartActionTests: XCTestCase {
+    func testFindsLinksAndEmailAddressesWithoutOpeningThem() {
+        let actions = SmartActionDetector.detect(in: "Visit https://example.com and contact team@example.com")
+        XCTAssertTrue(actions.contains { $0.kind == .url && $0.value == "https://example.com" })
+        XCTAssertTrue(actions.contains { $0.kind == .email && $0.value == "team@example.com" })
+    }
+}
+
+final class HotKeyBindingTests: XCTestCase {
+    func testCatchTextShortcutUsesControlOptionSpace() {
+        XCTAssertEqual(HotKeyBinding.defaults[.catchText]?.displayName, "⌃⌥Space key")
+    }
+}
