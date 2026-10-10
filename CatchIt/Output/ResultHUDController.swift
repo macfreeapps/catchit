@@ -87,8 +87,10 @@ final class ResultHUDController: NSObject {
                 context.duration = 0.18
                 hud.animator().alphaValue = 0
             } completionHandler: { [weak self, weak hud] in
-                guard let self, let hud, self.panel === hud else { return }
-                self.dismiss()
+                Task { @MainActor [weak self, weak hud] in
+                    guard let self, let hud, self.panel === hud else { return }
+                    self.dismiss()
+                }
             }
         }
     }

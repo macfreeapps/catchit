@@ -156,16 +156,17 @@ private final class CaptureOverlayView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        drawInstruction()
-        drawToggleChips()
         guard let selectionRect else { return }
         NSColor(calibratedWhite: 0.5, alpha: 0.34).setFill()
         selectionRect.fill()
-        let border = NSBezierPath(roundedRect: selectionRect, xRadius: 5, yRadius: 5)
-        border.lineWidth = 1.5
+        let outlineRect = selectionRect.insetBy(dx: 0.75, dy: 0.75)
+        let outline = NSBezierPath(rect: outlineRect)
+        outline.lineWidth = 2.5
+        NSColor.black.withAlphaComponent(0.7).setStroke()
+        outline.stroke()
+        outline.lineWidth = 1
         NSColor.white.withAlphaComponent(0.9).setStroke()
-        border.stroke()
-        drawSizeLabel(for: selectionRect)
+        outline.stroke()
     }
 
     override func mouseDown(with event: NSEvent) {
@@ -210,53 +211,4 @@ private final class CaptureOverlayView: NSView {
         }
     }
 
-    private func drawInstruction() {
-        let text = AppText.localized("Drag to select · L Lines · A Add · S Speak · Esc Cancel")
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: NSColor.white
-        ]
-        let size = (text as NSString).size(withAttributes: attributes)
-        let pill = CGRect(x: (bounds.width - size.width) / 2 - 12, y: bounds.height - size.height - 42, width: size.width + 24, height: size.height + 16)
-        NSColor.black.withAlphaComponent(0.72).setFill()
-        NSBezierPath(roundedRect: pill, xRadius: pill.height / 2, yRadius: pill.height / 2).fill()
-        (text as NSString).draw(at: CGPoint(x: pill.minX + 12, y: pill.minY + 8), withAttributes: attributes)
-    }
-
-    private func drawToggleChips() {
-        let items = [
-            (AppText.localized("Line breaks"), toggles.keepLineBreaks),
-            (AppText.localized("Additive"), toggles.additiveMode),
-            (AppText.localized("Speak"), toggles.speakAfterCapture)
-        ]
-        var x: CGFloat = 18
-        let y: CGFloat = 18
-        for (title, active) in items {
-            let label = "\(title)  \(AppText.localized(active ? "On" : "Off"))"
-            let font = NSFont.systemFont(ofSize: 11, weight: .medium)
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: font,
-                .foregroundColor: NSColor.white
-            ]
-            let size = (label as NSString).size(withAttributes: attributes)
-            let chip = CGRect(x: x, y: y, width: size.width + 18, height: 27)
-            (active ? NSColor.systemTeal.withAlphaComponent(0.95) : NSColor.black.withAlphaComponent(0.68)).setFill()
-            NSBezierPath(roundedRect: chip, xRadius: 13, yRadius: 13).fill()
-            (label as NSString).draw(at: CGPoint(x: x + 9, y: y + 7), withAttributes: attributes)
-            x = chip.maxX + 7
-        }
-    }
-
-    private func drawSizeLabel(for rect: CGRect) {
-        let text = "\(Int(rect.width.rounded())) × \(Int(rect.height.rounded())) pt"
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium),
-            .foregroundColor: NSColor.white
-        ]
-        let textSize = (text as NSString).size(withAttributes: attributes)
-        let labelRect = CGRect(x: rect.minX, y: max(8, rect.minY - textSize.height - 13), width: textSize.width + 16, height: textSize.height + 8)
-        NSColor.black.withAlphaComponent(0.82).setFill()
-        NSBezierPath(roundedRect: labelRect, xRadius: 5, yRadius: 5).fill()
-        (text as NSString).draw(at: CGPoint(x: labelRect.minX + 8, y: labelRect.minY + 4), withAttributes: attributes)
-    }
 }
