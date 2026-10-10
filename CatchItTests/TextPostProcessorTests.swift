@@ -55,3 +55,20 @@ final class CollectionTextTests: XCTestCase {
         XCTAssertEqual(CollectionText.appending("first", to: "", separator: "\n\n"), "first")
     }
 }
+
+
+@MainActor
+final class CaptureOverlayCoordinatorTests: XCTestCase {
+    func testCaptureOverlayCanBeOpenedAndDismissedAfterMenuActionReturns() async {
+        let coordinator = CaptureOverlayCoordinator()
+        await coordinator.beginCaptureAfterCurrentEvent(toggles: CaptureToggles(
+            keepLineBreaks: true,
+            additiveMode: false,
+            speakAfterCapture: false
+        ))
+
+        XCTAssertTrue(coordinator.isCapturing)
+        coordinator.cancelCapture()
+        XCTAssertFalse(coordinator.isCapturing)
+    }
+}

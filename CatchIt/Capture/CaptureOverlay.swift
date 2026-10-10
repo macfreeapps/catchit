@@ -20,6 +20,16 @@ final class CaptureOverlayCoordinator {
     var onSelection: ((CaptureSelection) -> Void)?
     private var panels: [CapturePanel] = []
     private let logger = Logger(subsystem: "com.tarudesu.CatchIt", category: "Overlay")
+    var isCapturing: Bool { !panels.isEmpty }
+
+    func beginCaptureAfterCurrentEvent(toggles: CaptureToggles) async {
+        await withCheckedContinuation { continuation in
+            DispatchQueue.main.async { [weak self] in
+                self?.beginCapture(toggles: toggles)
+                continuation.resume()
+            }
+        }
+    }
 
     func beginCapture(toggles: CaptureToggles) {
         guard panels.isEmpty else { return }
@@ -66,7 +76,7 @@ final class CaptureOverlayCoordinator {
         onSelection?(selection)
     }
 
-    private func cancelCapture() {
+    func cancelCapture() {
         dismissPanels()
     }
 
@@ -93,9 +103,9 @@ private final class CapturePanel: NSPanel {
             contentRect: screen.frame,
             styleMask: [.borderless, .nonactivatingPanel],
             backing: .buffered,
-            defer: false,
-            screen: screen
+            defer: false
         )
+        setFrame(screen.frame, display: false)
         isOpaque = false
         backgroundColor = .clear
         hasShadow = false

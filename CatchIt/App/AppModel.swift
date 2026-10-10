@@ -112,7 +112,11 @@ final class AppModel: ObservableObject {
             additiveMode: preferences.general.additiveMode,
             speakAfterCapture: preferences.speech.readAfterCapture || mode == .speak
         )
-        overlayCoordinator.beginCapture(toggles: toggles)
+        // AppKit can still be unwinding the status menu's dismissal callback here.
+        // Defer NSWindow initialization until that event has fully returned.
+        Task { @MainActor [weak self] in
+            await self?.overlayCoordinator.beginCaptureAfterCurrentEvent(toggles: toggles)
+        }
     }
 
     func catchSameArea() {
