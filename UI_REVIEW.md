@@ -1,4 +1,4 @@
-# UI/UX review — 1.0.2
+# UI/UX review — 1.0.3
 
 Reviewed on macOS 27 with the installed universal app, using screenshots and the accessibility tree. The native Settings toolbar, grouped forms, system colors, and menu-bar workflow are appropriate for a small macOS utility. The reported menu action crash was traced to creating a full-screen capture panel while AppKit was still dismissing the status menu. Overlay creation is now deferred until the menu action returns. A regression test opens and dismisses the panels without requesting screen access.
 
@@ -10,11 +10,11 @@ Reviewed on macOS 27 with the installed universal app, using screenshots and the
 - History empty messages overlay the list instead of appearing underneath an empty list. Searching with no matches has a native empty state. Copying a history entry gives clipboard feedback.
 - The document-and-lens mark scales correctly in onboarding and About, and decorative marks are hidden from accessibility.
 - User-facing settings use “Show capture results” and plain shortcut instructions. New copy is translated into Vietnamese.
-- Result notifications measure wrapped text to avoid a fixed-height layout clipping translated messages. Feedback remains visible for three seconds; notifications with actions remain for eight seconds.
+- Result notifications measure wrapped text to avoid a fixed-height layout clipping translated messages. Capture keeps the display sharp and at full brightness. A system crosshair marks capture mode, the active drag area gets a translucent gray fill and bright edge, and a too-small selection reports that a larger area is needed. Result feedback fades after 1.6 seconds; actionable barcode feedback remains for five seconds.
 - Unsupported regional OCR language codes now match the corresponding supported language before falling back to English, rather than the first alphabetical language.
 
 ## Scope and remaining manual checks
 
-All six Settings tabs were inspected in English dark appearance; Vietnamese onboarding and Settings were inspected visually. The selection overlay creation and dismissal regression check passed, along with the OCR, QR barcode, image/PDF import, smart-link detection, shortcut mapping, collection, and text post-processing checks (14 passing tests total). A universal Release archive built successfully and its code signature was verified. This pass did not grant Screen Recording or Accessibility access, record private screen content, run a full VoiceOver session, or repeat multi-monitor/OCR coverage. The remaining capture, light appearance, history data, and assistive-technology scenarios are listed in TESTING.md.
+All six Settings tabs were inspected in English dark appearance; Vietnamese onboarding and Settings were inspected visually. The selection overlay creation and dismissal regression check passed, along with the OCR, QR barcode, image/PDF import, smart-link detection, shortcut mapping, collection, and text post-processing checks. A universal Release archive built successfully and its code signature was verified. This pass did not grant Screen Recording or Accessibility access, record private screen content, run a full VoiceOver session, or repeat multi-monitor/OCR coverage. The remaining capture, light appearance, history data, and assistive-technology scenarios are listed in TESTING.md.
 
 Distribution remains Apple Development signed and not notarized; this UI update does not change that limitation.

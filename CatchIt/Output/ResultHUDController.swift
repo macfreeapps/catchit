@@ -79,10 +79,17 @@ final class ResultHUDController: NSObject {
         hud.orderFrontRegardless()
         panel = hud
 
-        dismissTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(actions.isEmpty ? 3.0 : 8.0))
+        dismissTask = Task { [weak self, weak hud] in
+            try? await Task.sleep(for: .seconds(actions.isEmpty ? 1.6 : 5.0))
             guard !Task.isCancelled else { return }
-            self?.dismiss()
+            guard let self, let hud, self.panel === hud else { return }
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0.18
+                hud.animator().alphaValue = 0
+            } completionHandler: { [weak self, weak hud] in
+                guard let self, let hud, self.panel === hud else { return }
+                self.dismiss()
+            }
         }
     }
 

@@ -1419,6 +1419,16 @@
           }
         }
       }
+    },
+    "Select a larger area": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hãy chọn vùng lớn hơn"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

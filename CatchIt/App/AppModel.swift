@@ -53,6 +53,9 @@ final class AppModel: ObservableObject {
             self.remember(selection)
             self.process(selection, mode: self.pendingMode)
         }
+        overlayCoordinator.onInvalidSelection = { [weak self] point in
+            self?.showMessage(AppText.localized("Select a larger area"), near: point)
+        }
         pasteMonitor.onPaste = { [weak self] in self?.clearCollectionAfterPaste() }
         continuityCamera.onImage = { [weak self] image in self?.recognizeImportedImage(image) }
         NSApp.servicesProvider = continuityCamera

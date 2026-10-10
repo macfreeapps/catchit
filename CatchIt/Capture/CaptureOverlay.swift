@@ -18,8 +18,10 @@ struct CaptureToggles {
 @MainActor
 final class CaptureOverlayCoordinator {
     var onSelection: ((CaptureSelection) -> Void)?
+    var onInvalidSelection: ((CGPoint) -> Void)?
     private var panels: [CapturePanel] = []
     private let logger = Logger(subsystem: "com.tarudesu.CatchIt", category: "Overlay")
+    private var cursorIsPushed = false
     var isCapturing: Bool { !panels.isEmpty }
 
     func beginCaptureAfterCurrentEvent(toggles: CaptureToggles) async {
@@ -60,12 +62,16 @@ final class CaptureOverlayCoordinator {
         }
         activePanel?.makeKeyAndOrderFront(nil)
         NSCursor.crosshair.push()
+        cursorIsPushed = true
     }
 
     private func finishCapture(rect: CGRect, screen: NSScreen, displayID: CGDirectDisplayID, toggles: CaptureToggles) {
         let clipped = rect.intersection(screen.frame)
         dismissPanels()
-        guard clipped.width >= 3, clipped.height >= 3 else { return }
+        guard clipped.width >= 3, clipped.height >= 3 else {
+            onInvalidSelection?(NSEvent.mouseLocation)
+            return
+        }
         let selection = CaptureSelection(
             globalRect: clipped,
             screenFrame: screen.frame,
@@ -83,7 +89,10 @@ final class CaptureOverlayCoordinator {
     private func dismissPanels() {
         panels.forEach { $0.orderOut(nil) }
         panels.removeAll()
-        NSCursor.pop()
+        if cursorIsPushed {
+            NSCursor.pop()
+            cursorIsPushed = false
+        }
     }
 }
 
@@ -147,17 +156,14 @@ private final class CaptureOverlayView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        NSColor.black.withAlphaComponent(0.43).setFill()
-        bounds.fill()
-
         drawInstruction()
         drawToggleChips()
         guard let selectionRect else { return }
-        NSColor.white.withAlphaComponent(0.07).setFill()
+        NSColor(calibratedWhite: 0.5, alpha: 0.34).setFill()
         selectionRect.fill()
         let border = NSBezierPath(roundedRect: selectionRect, xRadius: 5, yRadius: 5)
-        border.lineWidth = 2
-        NSColor.systemTeal.setStroke()
+        border.lineWidth = 1.5
+        NSColor.white.withAlphaComponent(0.9).setStroke()
         border.stroke()
         drawSizeLabel(for: selectionRect)
     }
@@ -208,12 +214,13 @@ private final class CaptureOverlayView: NSView {
         let text = AppText.localized("Drag to select · L Lines · A Add · S Speak · Esc Cancel")
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: NSColor.white,
-            .backgroundColor: NSColor.black.withAlphaComponent(0.5)
+            .foregroundColor: NSColor.white
         ]
         let size = (text as NSString).size(withAttributes: attributes)
-        let rect = CGRect(x: (bounds.width - size.width) / 2, y: bounds.height - size.height - 28, width: size.width, height: size.height)
-        (text as NSString).draw(in: rect.insetBy(dx: -10, dy: -7), withAttributes: attributes)
+        let pill = CGRect(x: (bounds.width - size.width) / 2 - 12, y: bounds.height - size.height - 42, width: size.width + 24, height: size.height + 16)
+        NSColor.black.withAlphaComponent(0.72).setFill()
+        NSBezierPath(roundedRect: pill, xRadius: pill.height / 2, yRadius: pill.height / 2).fill()
+        (text as NSString).draw(at: CGPoint(x: pill.minX + 12, y: pill.minY + 8), withAttributes: attributes)
     }
 
     private func drawToggleChips() {

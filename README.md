@@ -6,7 +6,7 @@ Catch It is a native macOS menu-bar utility for copying text or barcode contents
 
 ### Install a release
 
-Download `CatchIt-1.0.0-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
+Download `CatchIt-1.0.3-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
 
 This release is signed with an Apple Development certificate and is not notarized by Apple. If macOS blocks the first launch, open **System Settings → Privacy & Security** and choose **Open Anyway** for Catch It. The certificate expires on 28 June 2027; because the signature has no secure timestamp, a new build may be needed after that date.
 

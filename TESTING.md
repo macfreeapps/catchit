@@ -9,11 +9,12 @@ xcodebuild -project CatchIt.xcodeproj -scheme CatchIt -configuration Debug test
 ## Capture and permission flow
 
 - [ ] Start Catch It from Xcode. On first launch, review both onboarding pages, open Screen Recording settings, then continue.
-- [ ] Click the status icon and choose **Catch Text**. Confirm each connected display dims and shows a crosshair; drag a rectangle and confirm recognized text is copied.
+- [ ] Click the status icon and choose **Catch Text**. Confirm the display stays sharp and at normal brightness, a crosshair appears, and only the dragged rectangle gets a gray highlight; drag over text and confirm recognized text is copied.
+- [ ] Drag a tiny area or click without dragging. Confirm the overlay closes and a brief **Select a larger area** message appears.
 - [ ] Right-click the status icon and confirm capture starts without opening the menu.
 - [ ] Option-click the status icon and confirm capture starts without opening the menu.
 - [ ] Start capture and press **Escape**. Confirm it closes without changing the clipboard.
-- [ ] Select an area containing no readable text. Confirm the HUD says **No text found** and the previous clipboard text remains unchanged.
+- [ ] Select an area containing no readable text. Confirm the HUD briefly says **No text found** and the previous clipboard text remains unchanged.
 - [ ] Revoke Screen Recording access in System Settings, attempt capture, and confirm Catch It shows a helpful alert with a working settings button. Re-enable access and relaunch.
 
 ## Displays and app surfaces
