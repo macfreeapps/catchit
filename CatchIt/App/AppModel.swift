@@ -36,6 +36,7 @@ final class AppModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var pendingMode: CaptureMode = .text
     private var historyWindow: NSWindow?
+    private var settingsWindow: NSWindow?
     private var onboardingWindow: NSWindow?
     private var speechStateTask: Task<Void, Never>?
 
@@ -222,6 +223,25 @@ final class AppModel: ObservableObject {
         window.isReleasedWhenClosed = false
         window.makeKeyAndOrderFront(nil)
         historyWindow = window
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    func showSettings() {
+        if let settingsWindow {
+            settingsWindow.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+        let window = NSWindow(contentRect: CGRect(x: 0, y: 0, width: 680, height: 520), styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
+        window.title = AppText.localized("Catch It Settings")
+        let hostingView = NSHostingView(rootView: SettingsView(model: self))
+        hostingView.sizingOptions = []
+        window.contentView = hostingView
+        window.contentMinSize = NSSize(width: 640, height: 480)
+        window.center()
+        window.isReleasedWhenClosed = false
+        window.makeKeyAndOrderFront(nil)
+        settingsWindow = window
         NSApp.activate(ignoringOtherApps: true)
     }
 

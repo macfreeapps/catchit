@@ -59,6 +59,18 @@ final class CollectionTextTests: XCTestCase {
 
 @MainActor
 final class CaptureOverlayCoordinatorTests: XCTestCase {
+    func testSettingsWindowOpensAndCanBeReopenedAfterClosing() throws {
+        let model = AppModel.shared
+        model.showSettings()
+        let window = try XCTUnwrap(NSApp.windows.first { $0.title == "Catch It Settings" })
+        XCTAssertTrue(window.isVisible)
+        window.close()
+
+        model.showSettings()
+        XCTAssertTrue(window.isVisible)
+        window.close()
+    }
+
     func testCaptureOverlayReceivesClicksBeforeAnySelectionIsDrawn() async throws {
         let coordinator = CaptureOverlayCoordinator()
         await coordinator.beginCaptureAfterCurrentEvent(toggles: CaptureToggles(

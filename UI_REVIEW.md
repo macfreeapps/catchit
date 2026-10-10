@@ -1,8 +1,10 @@
-# UI/UX review — 1.0.5
+# UI/UX review — 1.0.6
 
 Reviewed on macOS 27 with the installed universal app, using screenshots and the accessibility tree. The native Settings toolbar, grouped forms, system colors, and menu-bar workflow are appropriate for a small macOS utility. The reported menu action crash was traced to creating a full-screen capture panel while AppKit was still dismissing the status menu. Overlay creation is now deferred until the menu action returns. A regression test opens and dismisses the panels without requesting screen access.
 
 ## Corrections
+
+- Settings now opens a retained, native window from the menu after menu dismissal. This avoids relying on a responder-chain selector to present SwiftUI’s Settings scene in a menu-bar-only app. The window can be closed and reopened; a regression test covers both paths.
 
 - Fixed a capture input regression introduced by making the initial overlay completely transparent. WindowServer routed clicks to the underlying app before a selection was drawn. The panel now has a 1% alpha input surface, explicitly accepts mouse input, and accepts the first click. A regression test queries WindowServer’s actual mouse-down target; it failed with the clear surface and passes with the fix. Another test sends a drag through the panel and verifies the resulting global rectangle and dismissal.
 

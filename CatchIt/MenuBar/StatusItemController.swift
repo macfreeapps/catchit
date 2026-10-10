@@ -98,7 +98,10 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         case .captureAndSpeak: model.startCapture(mode: .speak)
         case .stopSpeaking: model.stopSpeaking()
         case .showHistory: model.showHistory()
-        case .settings: NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        case .settings:
+            DispatchQueue.main.async { [weak self] in
+                self?.model.showSettings()
+            }
         case .quit: NSApp.terminate(nil)
         }
     }
