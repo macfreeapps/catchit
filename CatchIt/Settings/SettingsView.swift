@@ -29,8 +29,8 @@ struct SettingsView: View {
     var body: some View {
         TabView {
             generalSettings.tabItem { Label("General", systemImage: "slider.horizontal.3") }
-            recognitionSettings.tabItem { Label("Recognition", systemImage: "text.viewfinder") }
-            customWordsSettings.tabItem { Label("Custom Words", systemImage: "text.badge.plus") }
+            recognitionSettings.tabItem { Label("Text", systemImage: "text.viewfinder") }
+            clipboardSettings.tabItem { Label("Clipboard", systemImage: "doc.on.clipboard") }
             shortcutSettings.tabItem { Label("Shortcuts", systemImage: "keyboard") }
             speechSettings.tabItem { Label("Speech", systemImage: "waveform") }
             aboutSettings.tabItem { Label("About", systemImage: "info.circle") }
@@ -48,10 +48,22 @@ struct SettingsView: View {
             Section("Capture") {
                 Toggle("Show capture results", isOn: $general.showHUD)
                 Toggle("Play a sound after a successful capture", isOn: $general.captureSound)
-                Toggle("Keep line breaks", isOn: $general.keepLineBreaks)
-                    .help("When off, lines are joined into paragraphs and line-end hyphenation is corrected.")
-                Toggle("Open detected links automatically", isOn: $general.openLinksAutomatically)
             }
+            Section("System") {
+                Toggle("Launch Catch It at login", isOn: Binding(get: { general.launchAtLogin }, set: { model.setLaunchAtLogin($0) }))
+                Picker("Appearance", selection: $general.appearanceMode) {
+                    Text("System").tag("system")
+                    Text("Light").tag("light")
+                    Text("Dark").tag("dark")
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .padding(.top, 8)
+    }
+
+    private var clipboardSettings: some View {
+        Form {
             Section("Clipboard collection") {
                 Toggle("Add new captures to a collection", isOn: $general.additiveMode)
                 Picker("Separator", selection: $general.collectionSeparator) {
@@ -74,13 +86,8 @@ struct SettingsView: View {
                     }
                 }
             }
-            Section("System") {
-                Toggle("Launch Catch It at login", isOn: Binding(get: { general.launchAtLogin }, set: { model.setLaunchAtLogin($0) }))
-                Picker("Appearance", selection: $general.appearanceMode) {
-                    Text("System").tag("system")
-                    Text("Light").tag("light")
-                    Text("Dark").tag("dark")
-                }
+            Section("Links") {
+                Toggle("Open detected links automatically", isOn: $general.openLinksAutomatically)
             }
         }
         .formStyle(.grouped)
@@ -89,6 +96,18 @@ struct SettingsView: View {
 
     private var recognitionSettings: some View {
         Form {
+            Section("Text format") {
+                Picker("Copy text as", selection: $general.keepLineBreaks) {
+                    Text("Original rows").tag(true)
+                    Text("One line").tag(false)
+                }
+                .pickerStyle(.segmented)
+                Text(general.keepLineBreaks
+                     ? LocalizedStringKey("Preserves recognized rows and paragraph breaks. Copies plain text, without fonts or colors.")
+                     : LocalizedStringKey("Joins all rows and paragraphs into one line and repairs words split by a line-end hyphen."))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
             Section("Language") {
                 Picker("Primary language (auto-detect off)", selection: $recognition.primaryLanguage) {
                     ForEach(languageChoices, id: \.self) { language in
@@ -105,6 +124,11 @@ struct SettingsView: View {
                 Text("Turns off language correction to help preserve source code, URLs, and identifiers.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
+            }
+            Section {
+                DisclosureGroup("Custom Words") {
+                    customWordsSettings
+                }
             }
         }
         .formStyle(.grouped)
@@ -147,6 +171,7 @@ struct SettingsView: View {
                 }
                 .onDelete { offsets in customWords.remove(atOffsets: offsets) }
             }
+            .frame(height: 160)
             HStack {
                 Button {
                     let word = WordDraft(text: "")
@@ -168,16 +193,21 @@ struct SettingsView: View {
     private var shortcutSettings: some View {
         Form {
             Toggle("Enable global shortcuts", isOn: $shortcuts.enabled)
-            Section("Shortcuts") {
-                ForEach(HotKeyAction.allCases, id: \.self) { action in
-                    HStack {
-                        Text(action.title)
-                        Spacer()
-                        HotKeyRecorder(binding: binding(for: action), actionName: action.title)
-                            .frame(width: 170, height: 30)
+            Section("Capture shortcut") {
+                shortcutRow(.catchText)
+                Text("Start selecting screen text from any app. Click the shortcut field and press your preferred key combination.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+            .disabled(!shortcuts.enabled)
+            Section {
+                DisclosureGroup("More shortcuts") {
+                    ForEach(HotKeyAction.allCases.filter { $0 != .catchText }, id: \.self) { action in
+                        shortcutRow(action)
                     }
                 }
             }
+            .disabled(!shortcuts.enabled)
             Text("Select a shortcut, then press a modifier and a key. Press Escape to cancel. Control–Option combinations are the defaults.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
@@ -220,29 +250,46 @@ struct SettingsView: View {
     }
 
     private var aboutSettings: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 10) {
-                CatchItMenuBarMark().frame(width: 28, height: 28).accessibilityHidden(true)
-                Text("Catch It").font(.title2.weight(.semibold))
+        ScrollView {
+            VStack(spacing: 16) {
+                CatchItMenuBarMark().frame(width: 56, height: 56).accessibilityHidden(true)
+                VStack(spacing: 6) {
+                    Text("Catch It").font(.title.weight(.semibold))
+                    Text(AppText.formatted("Version %@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"))
+                        .foregroundStyle(.secondary)
+                    Text("Made by @tarudesu").font(.headline)
+                }
+                Text("Select a part of your screen and copy its text or barcode contents. Recognition runs locally on this Mac with Apple Vision.")
+                    .multilineTextAlignment(.center)
+                Text("No network access, analytics, or telemetry. Screen images are processed in memory and discarded.")
+                    .font(.callout).foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                Divider()
+                Text("Interface language follows macOS; English and Vietnamese are available.")
+                    .font(.callout).foregroundStyle(.secondary)
+                DisclosureGroup("Credits and licenses") {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Runtime frameworks: SwiftUI, AppKit, Carbon, ScreenCaptureKit, Vision, PDFKit, AVFoundation, ServiceManagement.")
+                        Text("Third-party runtime packages: none. XcodeGen (MIT) is optional and used only to regenerate the Xcode project.")
+                    }
+                    .font(.callout).foregroundStyle(.secondary)
+                    .padding(.top, 8)
+                }
             }
-            Text("Select a part of your screen and copy its text or barcode contents. Recognition runs locally on this Mac with Apple Vision.")
-                .foregroundStyle(.secondary)
-            Text("Interface language follows macOS; English and Vietnamese are available.")
-                .font(.callout)
-            Text("No network access, analytics, or telemetry. Screen images are processed in memory and discarded.")
-                .font(.callout)
-            Divider()
-            Text("Runtime frameworks: SwiftUI, AppKit, Carbon, ScreenCaptureKit, Vision, PDFKit, AVFoundation, ServiceManagement.")
-                .font(.callout)
-            Text("Third-party runtime packages: none. XcodeGen (MIT) is optional and used only to regenerate the Xcode project.")
-                .font(.callout)
-            Spacer()
-            Text(AppText.formatted("Version %@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"))
-                .font(.caption).foregroundStyle(.tertiary)
+            .frame(maxWidth: 480)
+            .frame(maxWidth: .infinity)
+            .padding(24)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 16)
         .accessibilityElement(children: .contain)
+    }
+
+    private func shortcutRow(_ action: HotKeyAction) -> some View {
+        HStack {
+            Text(action.title)
+            Spacer()
+            HotKeyRecorder(binding: binding(for: action), actionName: action.title)
+                .frame(width: 170, height: 30)
+        }
     }
 
     private var languageChoices: [String] {
@@ -284,6 +331,7 @@ struct SettingsView: View {
 }
 
 private struct HotKeyRecorder: NSViewRepresentable {
+    @Environment(\.isEnabled) private var isEnabled
     @Binding var binding: HotKeyBinding
     var actionName: String
 
@@ -292,12 +340,14 @@ private struct HotKeyRecorder: NSViewRepresentable {
         view.onChange = { binding = $0 }
         view.binding = binding
         view.actionName = actionName
+        view.isEnabled = isEnabled
         return view
     }
 
     func updateNSView(_ view: HotKeyRecorderView, context: Context) {
         view.binding = binding
         view.actionName = actionName
+        view.isEnabled = isEnabled
         view.onChange = { binding = $0 }
     }
 }
@@ -306,10 +356,17 @@ private final class HotKeyRecorderView: NSView {
     var binding = HotKeyBinding(keyCode: 49, modifiers: 6144) { didSet { needsDisplay = true } }
     var onChange: ((HotKeyBinding) -> Void)?
     var actionName = ""
+    var isEnabled = true {
+        didSet {
+            if !isEnabled { isRecording = false }
+            needsDisplay = true
+        }
+    }
     private var isRecording = false
 
     override func isAccessibilityElement() -> Bool { true }
     override func accessibilityPerformPress() -> Bool {
+        guard isEnabled else { return false }
         window?.makeFirstResponder(self)
         isRecording.toggle()
         needsDisplay = true
@@ -346,19 +403,21 @@ private final class HotKeyRecorderView: NSView {
         let text = isRecording ? AppText.localized("Type a shortcut…") : binding.displayName
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.systemFont(ofSize: 12, weight: .medium),
-            .foregroundColor: NSColor.labelColor
+            .foregroundColor: isEnabled ? NSColor.labelColor : NSColor.disabledControlTextColor
         ]
         let size = (text as NSString).size(withAttributes: attributes)
         (text as NSString).draw(at: CGPoint(x: (bounds.width - size.width) / 2, y: (bounds.height - size.height) / 2), withAttributes: attributes)
     }
 
     override func mouseDown(with event: NSEvent) {
+        guard isEnabled else { return }
         window?.makeFirstResponder(self)
         isRecording.toggle()
         needsDisplay = true
     }
 
     override func keyDown(with event: NSEvent) {
+        guard isEnabled else { super.keyDown(with: event); return }
         guard isRecording else {
             if event.keyCode == 36 || event.keyCode == 49 {
                 _ = accessibilityPerformPress()
@@ -379,6 +438,7 @@ private final class HotKeyRecorderView: NSView {
         onChange?(binding)
     }
 
+    override func isAccessibilityEnabled() -> Bool { isEnabled }
     override func accessibilityRole() -> NSAccessibility.Role? { .button }
     override func accessibilityLabel() -> String? { AppText.formatted("%@: %@", actionName, isRecording ? AppText.localized("Type a shortcut…") : binding.displayName) }
     override func accessibilityHelp() -> String? { AppText.localized("Press to record a shortcut, then type a modifier and key. Escape cancels.") }

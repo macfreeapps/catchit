@@ -14,6 +14,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     private var readAloudItem: NSMenuItem?
     private var undoItem: NSMenuItem?
     private var historyItem: NSMenuItem?
+    private var stopSpeakingItem: NSMenuItem?
 
     init(model: AppModel) {
         self.model = model
@@ -40,24 +41,30 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         menu.addItem(item("Catch Same Area", command: .catchSameArea))
         menu.addItem(.separator())
 
+        let imports = submenu("Import")
         let continuity = NSMenuItem(title: AppText.localized("Import from iPhone or iPad"), action: nil, keyEquivalent: "")
         continuity.identifier = NSMenuItem.importFromDeviceIdentifier
-        menu.addItem(continuity)
-        menu.addItem(item("Open Image or PDF…", command: .openFile))
-        menu.addItem(.separator())
+        imports.addItem(continuity)
+        imports.addItem(item("Open Image or PDF…", command: .openFile))
 
+        let clipboard = submenu("Clipboard")
         let additive = item("Additive Mode", command: .toggleAdditive)
         additiveItem = additive
-        menu.addItem(additive)
+        clipboard.addItem(additive)
+        clipboard.addItem(.separator())
         let undo = item("Undo Clear Collection", command: .undoClear)
         undoItem = undo
-        menu.addItem(undo)
-        menu.addItem(item("Clear Collection", command: .clearCollection))
+        clipboard.addItem(undo)
+        clipboard.addItem(item("Clear Collection", command: .clearCollection))
+
+        let speech = submenu("Speech")
         let readAloud = item("Read Aloud After Capture", command: .toggleReadAloud)
         readAloudItem = readAloud
-        menu.addItem(readAloud)
-        menu.addItem(item("Capture and Speak", command: .captureAndSpeak))
-        menu.addItem(item("Stop Speaking", command: .stopSpeaking))
+        speech.addItem(readAloud)
+        speech.addItem(item("Capture and Speak", command: .captureAndSpeak))
+        let stop = item("Stop Speaking", command: .stopSpeaking)
+        stopSpeakingItem = stop
+        speech.addItem(stop)
         let history = item("History…", command: .showHistory)
         historyItem = history
         menu.addItem(history)
@@ -72,7 +79,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         readAloudItem?.state = model.preferences.speech.readAfterCapture ? .on : .off
         undoItem?.isHidden = !model.collection.canUndoClear
         historyItem?.isHidden = !model.preferences.general.showHistory
-        menu.item(withTag: Command.stopSpeaking.rawValue)?.isEnabled = model.isSpeaking
+        stopSpeakingItem?.isHidden = !model.isSpeaking
     }
 
     @objc private func statusItemClicked(_ sender: NSStatusBarButton) {
@@ -104,6 +111,16 @@ final class StatusItemController: NSObject, NSMenuDelegate {
             }
         case .quit: NSApp.terminate(nil)
         }
+    }
+
+    private func submenu(_ title: String) -> NSMenu {
+        let child = NSMenu(title: AppText.localized(title))
+        child.delegate = self
+        child.autoenablesItems = false
+        let parent = NSMenuItem(title: AppText.localized(title), action: nil, keyEquivalent: "")
+        parent.submenu = child
+        menu.addItem(parent)
+        return child
     }
 
     private func item(_ title: String, command: Command, key: String = "") -> NSMenuItem {

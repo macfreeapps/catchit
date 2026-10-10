@@ -58,8 +58,8 @@ enum TextPostProcessor {
         }
 
         return paragraphs.map { paragraph in
-            let orderedLines = paragraph.flatMap { row in
-                row.lines.sorted { $0.bounds.minX < $1.bounds.minX }.map(\.text)
+            let orderedLines = paragraph.map { row in
+                row.lines.sorted { $0.bounds.minX < $1.bounds.minX }.map(\.text).joined(separator: " ")
             }
             if keepLineBreaks {
                 return orderedLines.joined(separator: "\n")
@@ -67,7 +67,7 @@ enum TextPostProcessor {
             return joinLines(orderedLines)
         }
         .filter { !$0.isEmpty }
-        .joined(separator: "\n\n")
+        .joined(separator: keepLineBreaks ? "\n\n" : " ")
     }
 
     private static func makeRows(_ lines: [RecognizedLine], typicalHeight: CGFloat) -> [Row] {

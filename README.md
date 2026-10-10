@@ -6,7 +6,7 @@ Catch It is a native macOS menu-bar utility for copying text or barcode contents
 
 ### Install a release
 
-Download `CatchIt-1.0.6-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
+Download `CatchIt-1.0.7-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
 
 This release is signed with an Apple Development certificate and is not notarized by Apple. If macOS blocks the first launch, open **System Settings → Privacy & Security** and choose **Open Anyway** for Catch It. The certificate expires on 28 June 2027; because the signature has no secure timestamp, a new build may be needed after that date.
 
@@ -65,3 +65,14 @@ Accessibility access is requested only when **Clear collection after I paste** i
 - Runtime: Apple SwiftUI, AppKit, Carbon, ScreenCaptureKit, Vision, PDFKit, AVFoundation, ServiceManagement, and ApplicationServices. These are Apple system frameworks; no third-party runtime packages are linked or bundled.
 - Project generation only: [XcodeGen](https://github.com/yonaskolb/XcodeGen), MIT license. XcodeGen is optional and is not included in the app.
 - The app icon is an original document-and-lens design included in `CatchIt/Resources/CatchIt.icns`.
+
+### Settings
+
+- **General:** capture feedback, launch at login, and appearance.
+- **Text:** choose **Original rows** to preserve recognized line breaks, or **One line** to join all rows and paragraphs. Language, code mode, and custom words are here too.
+- **Clipboard:** collection separators, history, auto-clear after paste, and links.
+- **Shortcuts:** click the **Catch Text** shortcut field and press a modifier plus a key. Changes apply immediately; additional actions are under **More shortcuts**.
+- **Speech:** voice and reading speed.
+- **About:** version, privacy, creator, and framework credits.
+
+Import, Clipboard, and Speech tools are grouped into menu-bar submenus. Text is copied as plain text; preserving rows does not preserve fonts or colors. Collection separators apply between captures independently of the text-format setting.

@@ -1429,6 +1429,156 @@
           }
         }
       }
+    },
+    "Text": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Văn bản"
+          }
+        }
+      }
+    },
+    "Clipboard": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bảng nhớ tạm"
+          }
+        }
+      }
+    },
+    "Import": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nhập"
+          }
+        }
+      }
+    },
+    "Text format": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Định dạng văn bản"
+          }
+        }
+      }
+    },
+    "Copy text as": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sao chép văn bản dạng"
+          }
+        }
+      }
+    },
+    "Original rows": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giữ dòng gốc"
+          }
+        }
+      }
+    },
+    "One line": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Một dòng"
+          }
+        }
+      }
+    },
+    "Preserves recognized rows and paragraph breaks. Copies plain text, without fonts or colors.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Giữ các dòng và đoạn đã nhận dạng. Sao chép văn bản thuần, không có phông chữ hoặc màu sắc."
+          }
+        }
+      }
+    },
+    "Joins all rows and paragraphs into one line and repairs words split by a line-end hyphen.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nối mọi dòng và đoạn thành một dòng, đồng thời nối lại từ bị ngắt bởi dấu gạch nối cuối dòng."
+          }
+        }
+      }
+    },
+    "Links": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liên kết"
+          }
+        }
+      }
+    },
+    "Capture shortcut": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phím tắt chụp văn bản"
+          }
+        }
+      }
+    },
+    "More shortcuts": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Các phím tắt khác"
+          }
+        }
+      }
+    },
+    "Start selecting screen text from any app. Click the shortcut field and press your preferred key combination.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu chọn văn bản trên màn hình từ ứng dụng bất kỳ. Bấm vào ô phím tắt rồi nhấn tổ hợp phím bạn muốn."
+          }
+        }
+      }
+    },
+    "Made by @tarudesu": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Made by @tarudesu"
+          }
+        }
+      }
+    },
+    "Credits and licenses": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thông tin và giấy phép"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

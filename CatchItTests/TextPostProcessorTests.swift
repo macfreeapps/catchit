@@ -39,6 +39,28 @@ final class TextPostProcessorTests: XCTestCase {
         XCTAssertEqual(TextPostProcessor.format(input, keepLineBreaks: true), "1\n2")
     }
 
+    func testOneLineRemovesParagraphAndEmbeddedWhitespaceBreaks() {
+        let input = [
+            line("  First\trow  ", x: 0.1, y: 0.8),
+            line("second\nrow", x: 0.1, y: 0.77),
+            line("Another paragraph", x: 0.1, y: 0.60)
+        ]
+        XCTAssertEqual(TextPostProcessor.format(input, keepLineBreaks: false), "First row second row Another paragraph")
+    }
+
+    func testOneLineKeepsColumnReadingOrderWithoutBreaks() {
+        let input = [
+            line("Left one", x: 0.05, y: 0.82), line("Right one", x: 0.65, y: 0.82),
+            line("Left two", x: 0.05, y: 0.79), line("Right two", x: 0.65, y: 0.79)
+        ]
+        XCTAssertEqual(TextPostProcessor.format(input, keepLineBreaks: false), "Left one Left two Right one Right two")
+    }
+
+    func testSameRowFragmentsStayOnTheSameLine() {
+        let input = [line("Name:", x: 0.1, y: 0.8, width: 0.1), line("Catch It", x: 0.23, y: 0.8)]
+        XCTAssertEqual(TextPostProcessor.format(input, keepLineBreaks: true), "Name: Catch It")
+    }
+
     private func line(_ text: String, x: CGFloat, y: CGFloat, width: CGFloat = 0.25, height: CGFloat = 0.025) -> RecognizedLine {
         RecognizedLine(text: text, bounds: CGRect(x: x, y: y, width: width, height: height))
     }

@@ -65,3 +65,12 @@ xcodebuild -project CatchIt.xcodeproj -scheme CatchIt -configuration Debug test
 - [ ] Toggle **Launch Catch It at login** and confirm the setting reflects the macOS login-item status.
 - [ ] Navigate each Settings tab with the keyboard and VoiceOver. Confirm controls have useful labels and hints.
 - [ ] Quit and relaunch Catch It; confirm preferences and the last capture area are restored.
+
+## Settings refactor (1.0.7)
+
+- Open Settings from the menu and switch all six tabs; resize to the minimum size in light/dark appearances and English/Vietnamese.
+- In Shortcuts, record a new Catch Text combination, close Settings, and capture from another app. Relaunch and confirm the shortcut persists. Disable global shortcuts and confirm recording and global activation are disabled.
+- Capture several rows and paragraphs with Original rows, then One line; paste and verify the latter has no newlines. Collection separators remain independent.
+- Expand Custom Words and add/remove a term; expand More shortcuts and verify all additional actions remain editable.
+- Check Import, Clipboard, and Speech submenus; verify checked states and conditional Stop Speaking/History actions.
+- Open About and confirm the version and “Made by @tarudesu” attribution.

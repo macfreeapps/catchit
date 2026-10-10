@@ -1,3 +1,13 @@
+# Settings and menu refactor — 1.0.7
+
+Settings now uses six task-based tabs: General, Text, Clipboard, Shortcuts, Speech, and About. Grouped native forms scroll when needed. Custom words, additional shortcuts, and framework credits use disclosure controls. The primary capture shortcut is visible without expanding a disclosure. Disabled shortcut recording is enforced by the AppKit control as well as SwiftUI. Native semantic colors and existing keyboard/accessibility support are retained. English and Vietnamese copy is included.
+
+The menu keeps capture commands at the top and groups secondary actions into Import, Clipboard, and Speech submenus. Stop Speaking appears only during speech; History appears when enabled. About includes “Made by @tarudesu”.
+
+“One line” now joins across paragraph and column boundaries, collapses whitespace, and retains reading order. Original rows keeps same-row fragments together and preserves row/paragraph breaks. Automated regression coverage includes these cases and Settings open/reopen. Build and automated results are recorded with the release. This refactor has not been visually inspected in the installed app through UI automation: the menu-bar utility is absent from the available app inventory. Live visual inspection in both appearances and Vietnamese remains a manual check.
+
+## Earlier review (1.0.6)
+
 # UI/UX review — 1.0.6
 
 Reviewed on macOS 27 with the installed universal app, using screenshots and the accessibility tree. The native Settings toolbar, grouped forms, system colors, and menu-bar workflow are appropriate for a small macOS utility. The reported menu action crash was traced to creating a full-screen capture panel while AppKit was still dismissing the status menu. Overlay creation is now deferred until the menu action returns. A regression test opens and dismisses the panels without requesting screen access.
