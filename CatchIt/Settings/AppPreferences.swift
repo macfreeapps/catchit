@@ -76,7 +76,7 @@ final class GeneralPreferences: ObservableObject {
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         showHUD = defaults.object(forKey: "general.showHUD") as? Bool ?? true
-        captureSound = defaults.object(forKey: "general.captureSound") as? Bool ?? false
+        captureSound = defaults.object(forKey: "general.captureSound") as? Bool ?? true
         keepLineBreaks = defaults.object(forKey: "general.keepLineBreaks") as? Bool ?? true
         additiveMode = defaults.object(forKey: "general.additiveMode") as? Bool ?? false
         collectionSeparator = defaults.string(forKey: "general.collectionSeparator") ?? "\n"

@@ -1579,6 +1579,46 @@
           }
         }
       }
+    },
+    "Play a sound after each capture": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phát âm thanh sau mỗi lần chụp"
+          }
+        }
+      }
+    },
+    "Plays for successful and failed captures.": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phát âm thanh khi chụp thành công hoặc thất bại."
+          }
+        }
+      }
+    },
+    "Text copied": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã sao chép văn bản"
+          }
+        }
+      }
+    },
+    "Barcode copied": {
+      "localizations": {
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã sao chép mã vạch"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

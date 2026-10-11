@@ -11,7 +11,7 @@ final class ResultHUDController: NSObject {
     private var dismissTask: Task<Void, Never>?
     private var actionHandlers: [Int: () -> Void] = [:]
 
-    func show(message: String, near selection: CGRect, enabled: Bool, actions: [HUDAction] = []) {
+    func show(message: String, near selection: CGRect, enabled: Bool, actions: [HUDAction] = [], displayDuration: Duration = .milliseconds(850)) {
         dismiss()
         guard enabled else { return }
 
@@ -80,7 +80,7 @@ final class ResultHUDController: NSObject {
         panel = hud
 
         dismissTask = Task { [weak self, weak hud] in
-            try? await Task.sleep(for: .seconds(actions.isEmpty ? 1.6 : 5.0))
+            try? await Task.sleep(for: actions.isEmpty ? displayDuration : .seconds(5))
             guard !Task.isCancelled else { return }
             guard let self, let hud, self.panel === hud else { return }
             NSAnimationContext.runAnimationGroup { context in

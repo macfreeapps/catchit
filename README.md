@@ -6,7 +6,7 @@ Catch It is a native macOS menu-bar utility for copying text or barcode contents
 
 ### Install a release
 
-Download `CatchIt-1.0.7-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
+Download `CatchIt-1.0.8-universal.dmg` from [GitHub Releases](https://github.com/macfreeapps/catchit/releases/latest), open it, and drag **Catch It** to Applications. Catch It requires macOS 14 or later and supports Apple Silicon and Intel Macs.
 
 This release is signed with an Apple Development certificate and is not notarized by Apple. If macOS blocks the first launch, open **System Settings → Privacy & Security** and choose **Open Anyway** for Catch It. The certificate expires on 28 June 2027; because the signature has no secure timestamp, a new build may be needed after that date.
 
@@ -68,7 +68,7 @@ Accessibility access is requested only when **Clear collection after I paste** i
 
 ### Settings
 
-- **General:** capture feedback, launch at login, and appearance.
+- **General:** brief capture results, sound after success or failure, launch at login, and appearance.
 - **Text:** choose **Original rows** to preserve recognized line breaks, or **One line** to join all rows and paragraphs. Language, code mode, and custom words are here too.
 - **Clipboard:** collection separators, history, auto-clear after paste, and links.
 - **Shortcuts:** click the **Catch Text** shortcut field and press a modifier plus a key. Changes apply immediately; additional actions are under **More shortcuts**.
@@ -76,3 +76,7 @@ Accessibility access is requested only when **Clear collection after I paste** i
 - **About:** version, privacy, creator, and framework credits.
 
 Import, Clipboard, and Speech tools are grouped into menu-bar submenus. Text is copied as plain text; preserving rows does not preserve fonts or colors. Collection separators apply between captures independently of the text-format setting.
+
+### Capture feedback
+
+Successful text capture briefly shows **Text copied**; a no-text or recognition error shows a short failure message. Sound feedback is enabled by default for both success and failure. In General settings, you can turn the sound off or hide the result popup. The popup fades after about one second.

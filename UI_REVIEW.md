@@ -1,3 +1,11 @@
+# Capture feedback update — 1.0.8
+
+A successful copy now displays a compact “Text copied” result; no text, recognition failure, and capture failure produce brief feedback too. With the default sound setting, each outcome plays the system alert sound. General settings lets people mute the sound or hide the result popup. Simple feedback fades after 850 ms and the fade takes 180 ms. Actionable barcode feedback stays visible for five seconds so its action is available.
+
+20 automated tests passed. Release archived as a universal arm64/x86_64 app and its signature was verified. The transient feedback timing was not observed through live UI automation; confirm once on device during a text capture.
+
+---
+
 # Settings and menu refactor — 1.0.7
 
 Settings now uses six task-based tabs: General, Text, Clipboard, Shortcuts, Speech, and About. Grouped native forms scroll when needed. Custom words, additional shortcuts, and framework credits use disclosure controls. The primary capture shortcut is visible without expanding a disclosure. Disabled shortcut recording is enforced by the AppKit control as well as SwiftUI. Native semantic colors and existing keyboard/accessibility support are retained. English and Vietnamese copy is included.

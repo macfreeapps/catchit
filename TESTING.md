@@ -74,3 +74,11 @@ xcodebuild -project CatchIt.xcodeproj -scheme CatchIt -configuration Debug test
 - Expand Custom Words and add/remove a term; expand More shortcuts and verify all additional actions remain editable.
 - Check Import, Clipboard, and Speech submenus; verify checked states and conditional Stop Speaking/History actions.
 - Open About and confirm the version and “Made by @tarudesu” attribution.
+
+## Capture feedback (1.0.8)
+
+- Capture readable text and confirm a brief “Text copied” popup and sound.
+- Capture an area without text and confirm a brief “No text found” popup and sound; verify clipboard contents are unchanged.
+- Force a recognition/capture failure and confirm the matching popup and sound.
+- Disable the sound in General settings and verify the popup still appears without sound. Disable result popups and verify audio feedback still works.
+- Confirm the result popup fades after about one second. Confirm actionable barcode feedback stays long enough to select its button.

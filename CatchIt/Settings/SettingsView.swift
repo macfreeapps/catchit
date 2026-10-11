@@ -47,7 +47,8 @@ struct SettingsView: View {
         Form {
             Section("Capture") {
                 Toggle("Show capture results", isOn: $general.showHUD)
-                Toggle("Play a sound after a successful capture", isOn: $general.captureSound)
+                Toggle("Play a sound after each capture", isOn: $general.captureSound)
+                    .help("Plays for successful and failed captures.")
             }
             Section("System") {
                 Toggle("Launch Catch It at login", isOn: Binding(get: { general.launchAtLogin }, set: { model.setLaunchAtLogin($0) }))

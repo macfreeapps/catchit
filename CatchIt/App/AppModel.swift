@@ -293,7 +293,7 @@ final class AppModel: ObservableObject {
                         return
                     }
                     let model = self
-                    hudController.show(message: AppText.localized("No barcode found"), near: selection.globalRect, enabled: preferences.general.showHUD, actions: [
+                    showCaptureResult(AppText.localized("No barcode found"), near: selection.globalRect, actions: [
                         HUDAction(title: AppText.localized("Read text instead")) { [weak model] in model?.recognizeText(image, selection: selection) }
                     ])
                     return
@@ -304,7 +304,7 @@ final class AppModel: ObservableObject {
                 showPermissionAlert(title: AppText.localized("Allow Screen Recording for Catch It"), message: AppText.localized("macOS needs Screen Recording permission so Catch It can read the area you select. After enabling it, quit and reopen Catch It."), settingsPane: "Privacy_ScreenCapture")
             } catch {
                 logger.error("Capture failed: \(error.localizedDescription, privacy: .public)")
-                hudController.show(message: AppText.localized("Capture failed"), near: selection.globalRect, enabled: preferences.general.showHUD)
+                showCaptureResult(AppText.localized("Capture failed"), near: selection.globalRect)
             }
         }
     }
@@ -314,13 +314,13 @@ final class AppModel: ObservableObject {
             do {
                 let text = try await recognizer.recognize(in: image, preferences: ocrPreferences(keepLineBreaks: selection.toggles.keepLineBreaks))
                 guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-                    hudController.show(message: AppText.localized("No text found"), near: selection.globalRect, enabled: preferences.general.showHUD)
+                    showCaptureResult(AppText.localized("No text found"), near: selection.globalRect)
                     return
                 }
                 deliver(text, additive: selection.toggles.additiveMode, near: selection.globalRect, speak: selection.toggles.speakAfterCapture)
             } catch {
                 logger.error("Text recognition failed: \(error.localizedDescription, privacy: .public)")
-                hudController.show(message: AppText.localized("Recognition failed"), near: selection.globalRect, enabled: preferences.general.showHUD)
+                showCaptureResult(AppText.localized("Recognition failed"), near: selection.globalRect)
             }
         }
     }
@@ -337,18 +337,17 @@ final class AppModel: ObservableObject {
         Task {
             do {
                 let text = try await recognizer.recognize(in: image, preferences: ocrPreferences(keepLineBreaks: preferences.general.keepLineBreaks))
-                guard !text.isEmpty else { showMessage(AppText.localized("No text found"), near: NSEvent.mouseLocation); return }
+                guard !text.isEmpty else { showCaptureResult(AppText.localized("No text found"), near: CGRect(origin: NSEvent.mouseLocation, size: .zero)); return }
                 deliver(text, additive: preferences.general.additiveMode, near: CGRect(origin: NSEvent.mouseLocation, size: .zero))
             } catch {
                 logger.error("Continuity Camera recognition failed: \(error.localizedDescription, privacy: .public)")
-                showMessage(AppText.localized("Recognition failed"), near: NSEvent.mouseLocation)
+                showCaptureResult(AppText.localized("Recognition failed"), near: CGRect(origin: NSEvent.mouseLocation, size: .zero))
             }
         }
     }
 
     private func deliver(_ text: String, additive: Bool, near rect: CGRect, barcode: Bool = false, speak: Bool? = nil) {
         collection.copy(text, additive: additive, separator: preferences.general.collectionSeparator)
-        if preferences.general.captureSound { NSSound.beep() }
         if preferences.general.showHistory { history.append(text) }
 
         let detected = SmartActionDetector.detect(in: text)
@@ -369,18 +368,15 @@ final class AppModel: ObservableObject {
             }
         }
 
-        let message: String
-        if barcode {
-            message = text.count > 90 ? String(text.prefix(87)) + "…" : text
-        } else {
-            let wordCount = text.split(whereSeparator: \.isWhitespace).count
-            message = wordCount == 1
-                ? AppText.localized("Caught one word")
-                : AppText.formatted("%lld words caught", wordCount)
-        }
+        let message = AppText.localized(barcode ? "Barcode copied" : "Text copied")
         let actions: [HUDAction] = (!preferences.general.openLinksAutomatically && !urls.isEmpty)
             ? [HUDAction(title: AppText.localized("Open link")) { SmartActionDetector.open(urls[0]) }]
             : []
+        showCaptureResult(message, near: rect, actions: actions)
+    }
+
+    private func showCaptureResult(_ message: String, near rect: CGRect, actions: [HUDAction] = []) {
+        if preferences.general.captureSound { NSSound.beep() }
         hudController.show(message: message, near: rect, enabled: preferences.general.showHUD, actions: actions)
     }
 
